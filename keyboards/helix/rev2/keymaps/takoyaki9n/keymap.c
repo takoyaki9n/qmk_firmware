@@ -433,24 +433,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case EISU:
       if (record->event.pressed) {
         if(keymap_config.swap_lalt_lgui==false){
-          register_code(KC_LANG2);
+          register_code(KC_LGUI);
         }else{
-          SEND_STRING(SS_LALT("`"));
+          register_code(KC_LANG2);
         }
       } else {
-        unregister_code(KC_LANG2);
+        if(keymap_config.swap_lalt_lgui==false){
+          unregister_code(KC_LGUI);
+        }else{
+          unregister_code(KC_LANG2);
+        }
       }
       return false;
       break;
     case KANA:
       if (record->event.pressed) {
         if(keymap_config.swap_lalt_lgui==false){
-          register_code(KC_LANG1);
+          register_code(KC_RGUI);
         }else{
-          SEND_STRING(SS_LALT("`"));
+          register_code(KC_LANG1);
         }
       } else {
-        unregister_code(KC_LANG1);
+        if(keymap_config.swap_lalt_lgui==false){
+          unregister_code(KC_RGUI);
+        }else{
+          unregister_code(KC_LANG1);
+        }
       }
       return false;
       break;
